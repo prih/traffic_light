@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		body {
+			background-color: #000;
+			text-align: center;
+		}
+
+		#tf {
+			border: 2px solid #fff;
+			display: inline-block;
+			border-radius: 8px;
+			padding: 10px;
+		}
+
+		.light {
+			width: 150px;
+			height: 150px;
+			border-radius: 50%;
+			border: 1px solid #eee;
+			margin-bottom: 10px;
+		}
+
+		.light.red {
+			background-color: red;
+		}
+		.light.yellow {
+			background-color: yellow;
+		}
+		.light.green {
+			background-color: green;
+		}
+		.light.off {
+			background-color: #222;
+		}
+
+		#tf_mast {
+			width: 40px;
+			height: 300px;
+			display: inline-block;
+			border: 2px solid #fff;
+		}
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<div id="tf">
+			<div class="light red off"></div>
+			<div class="light yellow off"></div>
+			<div class="light green off"></div>
+		</div>
+		<div></div>
+		<div id="tf_mast"></div>
+	</div>
+</body>
+</html>
+
+<script type="text/javascript">
+	var lights = [
+		document.querySelector('#tf .red'),
+		document.querySelector('#tf .yellow'),
+		document.querySelector('#tf .green')
+	];
+
+	var cmd = [
+		[1, 0, 0],
+		[1, 0, 0],
+		[1, 0, 0],
+		[1, 0, 0],
+		[1, 0, 0],
+		[1, 0, 0],
+		[1, 0, 0],
+		[1, 0, 0],
+		[1, 0, 0],
+		[1, 0, 0],
+		[1, 0, 0],
+		[1, 0, 0],
+		[1, 0, 0],
+		[1, 0, 0],
+		[1, 0, 0],
+		[1, 0, 0],
+
+		[1, 1, 0],
+		[1, 1, 0],
+		[1, 1, 0],
+		[1, 1, 0],
+		[1, 1, 0],
+		[1, 1, 0],
+
+		[0, 0, 1],
+		[0, 0, 1],
+		[0, 0, 1],
+		[0, 0, 1],
+		[0, 0, 1],
+		[0, 0, 1],
+		[0, 0, 1],
+		[0, 0, 1],
+		[0, 0, 1],
+		[0, 0, 1],
+		[0, 0, 1],
+		[0, 0, 1],
+		[0, 0, 1],
+		[0, 0, 1],
+		[0, 0, 1],
+		[0, 0, 1],
+
+		[0, 0, 0],
+		[0, 0, 1],
+		[0, 0, 0],
+		[0, 0, 1],
+		[0, 0, 0],
+		[0, 0, 1]
+	];
+
+	var c = 0;
+
+	setInterval(function(){
+		if(c >= cmd.length){
+			c = 0;
+		}
+
+		var cmd_line = cmd[c];
+
+		for(var i in cmd_line){
+			if(cmd_line[i]){
+				if(lights[i].classList.contains('off')){
+					lights[i].classList.remove('off');
+				}
+			} else {
+				if(!lights[i].classList.contains('off')){
+					lights[i].classList.add('off');
+				}
+			}
+		}
+
+		c++;
+	}, 500);
+</script>
